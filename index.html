@@ -2,69 +2,72 @@
 <html lang="ku" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>تایبەت بۆ نازە خاتوون ❤️</title>
+    <title>بۆ نازە خاتوون ❤️</title>
     <style>
-        :root { --main-color: #ff3366; --bg-color: #0f0f0f; }
-        body { 
-            margin: 0; height: 100vh; display: flex; justify-content: center; align-items: center; 
-            background: radial-gradient(circle, #2d1b2e 0%, #0f0f0f 100%); 
-            font-family: 'Tahoma', sans-serif; overflow: hidden; color: white;
-        }
-        .card { 
-            background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px);
-            padding: 40px; border-radius: 30px; border: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center; width: 320px; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            transition: 0.5s;
-        }
-        h1 { color: #ff8da1; margin-bottom: 20px; }
-        .btn { 
-            background: var(--main-color); color: white; border: none; padding: 15px 30px;
-            border-radius: 50px; font-size: 1.1rem; cursor: pointer; font-weight: bold;
-            box-shadow: 0 5px 15px rgba(255, 51, 102, 0.4);
-        }
-        .heart-rain { position: absolute; color: var(--main-color); font-size: 1.5rem; top: -50px; animation: rain linear infinite; }
-        @keyframes rain { to { transform: translateY(100vh); } }
-        .hidden { display: none; }
-        #yesBtn { background: #4caf50; }
-        #noBtn { position: absolute; background: #f44336; }
+        body { margin: 0; background: #080808; height: 100vh; display: flex; justify-content: center; align-items: center; font-family: 'Tahoma', sans-serif; overflow: hidden; color: white; }
+        .card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); padding: 50px; border-radius: 40px; text-align: center; width: 90%; max-width: 450px; border: 1px solid rgba(255, 105, 180, 0.3); z-index: 10; box-shadow: 0 0 50px rgba(255, 51, 102, 0.3); }
+        .btn { padding: 15px 35px; border: none; border-radius: 50px; font-weight: bold; cursor: pointer; margin: 10px; transition: 0.3s; font-size: 1.1rem; }
+        .yes { background: linear-gradient(135deg, #ff3366, #ff7eb3); color: white; box-shadow: 0 5px 15px rgba(255, 51, 102, 0.4); }
+        .no { background: white; color: #302b63; }
+        #final-message { display: none; font-size: 1.6rem; color: #ffeb3b; font-weight: bold; }
+        .firework { position: absolute; border-radius: 50%; z-index: 1; }
+        .heart-rain { position: absolute; color: #ff3366; font-size: 1.5rem; top: -50px; z-index: 2; }
     </style>
 </head>
 <body>
 
-<div class="card" id="qBox">
-    <h1>ئاریانەوە بۆ نازە خاتوون ❤️</h1>
-    <p>ئایا خۆشت دەوێم؟</p>
-    <button class="btn" id="yesBtn" onclick="next()">بەڵێ</button>
-    <button class="btn" id="noBtn" onmouseover="run(this)">نەخێر</button>
-</div>
+<div class="card" id="card">
+    <div id="question-box">
+        <h1 style="color: #ff8da1;">لە ئاریانەوە بۆ نازە خاتوون ✨</h1>
+        <p>ئایا دڵت دەدەی بە من؟</p>
+        <button class="btn yes" onclick="celebrate()">بەڵێ، زۆر!</button>
+        <button class="btn no" id="noBtn" onmouseover="moveNo()">نەخێر</button>
+    </div>
 
-<div class="card hidden" id="giftBox">
-    <h1 id="msg">خۆشم دەوێیت نازە گیانم! ❤️</h1>
-    <button class="btn" onclick="showSurprise()">بینینی دیارییەکان</button>
+    <div id="final-message">
+        <p>تۆ دڵی منی نازە گیانم! ❤️</p>
+        <p>چاو جوانەکەم بۆ هەمیشە خۆشم دەوێیت!</p>
+        <!-- گۆرانی بە خۆکاری -->
+        <iframe width="0" height="0" src="https://www.youtube.com/embed/rbIoRnqcfwU?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
 </div>
 
 <script>
-    function run(btn) {
-        btn.style.left = Math.random() * (window.innerWidth - 100) + "px";
-        btn.style.top = Math.random() * (window.innerHeight - 100) + "px";
+    function moveNo() {
+        const btn = document.getElementById('noBtn');
+        btn.style.position = "absolute";
+        btn.style.left = Math.random() * 80 + "vw";
+        btn.style.top = Math.random() * 80 + "vh";
     }
-    function next() {
-        document.getElementById('qBox').classList.add('hidden');
-        document.getElementById('giftBox').classList.remove('hidden');
-    }
-    function showSurprise() {
-        alert("١. یادگارییەکانمان\n٢. گۆرانییەک بۆ تۆ\n٣. نامەیەکی پڕ لە خۆشەویستی");
+
+    function celebrate() {
+        document.getElementById('question-box').style.display = 'none';
+        document.getElementById('final-message').style.display = 'block';
+        
+        // یاری ئاگرینی
+        for(let i=0; i<40; i++) {
+            let f = document.createElement('div');
+            f.className = 'firework';
+            f.style.left = Math.random() * 100 + 'vw';
+            f.style.top = Math.random() * 100 + 'vh';
+            f.style.width = f.style.height = '10px';
+            f.style.background = `hsl(${Math.random() * 360}, 100%, 70%)`;
+            document.body.appendChild(f);
+            f.animate([{transform: 'scale(0)', opacity: 1}, {transform: 'scale(8)', opacity: 0}], {duration: 2000});
+        }
+
+        // بارانی دڵ
         setInterval(() => {
-            const h = document.createElement('div');
+            let h = document.createElement('div');
             h.innerHTML = "❤️";
             h.className = 'heart-rain';
             h.style.left = Math.random() * 100 + "vw";
-            h.style.animationDuration = Math.random() * 3 + 2 + "s";
+            h.style.animation = "fall 4s linear";
             document.body.appendChild(h);
-            setTimeout(() => h.remove(), 5000);
+            setTimeout(() => h.remove(), 4000);
         }, 200);
     }
 </script>
-
+<style>@keyframes fall { to { transform: translateY(100vh); } }</style>
 </body>
 </html>
