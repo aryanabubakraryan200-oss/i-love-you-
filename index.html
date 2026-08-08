@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ku" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>پرسیارێک لە نازە خاتوون ❤️</title>
+    <style>
+        body { background: #ffe4e9; font-family: 'Tahoma', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .container { text-align: center; background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); width: 80%; max-width: 400px; }
+        button { padding: 15px 30px; margin: 10px; border: none; border-radius: 10px; cursor: pointer; font-size: 1.2rem; font-weight: bold; }
+        #yesBtn { background: #4caf50; color: white; }
+        #noBtn { background: #f44336; color: white; position: relative; }
+        .hidden { display: none; }
+        img { width: 150px; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+
+<div class="container" id="main">
+    <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJ4ZzVqbm5qbm5qbm5qbm5qbm5qbm5qbm5qbm5qbm5qbm5qJmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/12XMHptK33d0u8/giphy.gif" alt="heart">
+    <h1 id="question">نازە گیان، خۆشت دەوێم؟ ❤️</h1>
+    <button id="yesBtn" onclick="nextStep()">بەڵێ</button>
+    <button id="noBtn" onmouseover="moveNo()" onclick="moveNo()">نەخێر</button>
+</div>
+
+<div class="container hidden" id="step2">
+    <h1>دڵنیایی؟ 😍</h1>
+    <button onclick="showGifts()">بەڵێ دڵنیام!</button>
+</div>
+
+<div class="container hidden" id="gifts">
+    <h1>هەموو ژیانمی! ئەم دیارییانە بۆ تۆ:</h1>
+    <button onclick="alert('تۆ جوانترین یادگاری منی نازە گیان!')">🎁 دیاری ١: یادگارییەکان</button><br>
+    <button onclick="alert('گۆرانییەکانم بۆ تۆ تەرخان کردووە!')">🎁 دیاری ٢: گۆرانییەک</button><br>
+    <button onclick="alert('خۆشم دەوێیت بۆ هەمیشە!')">🎁 دیاری ٣: نامەیەکی تایبەت</button>
+</div>
+
+<script>
+    function moveNo() {
+        const btn = document.getElementById('noBtn');
+        btn.style.left = Math.random() * 100 + "px";
+        btn.style.top = Math.random() * 100 + "px";
+    }
+    function nextStep() {
+        document.getElementById('main').classList.add('hidden');
+        document.getElementById('step2').classList.remove('hidden');
+    }
+    function showGifts() {
+        document.getElementById('step2').classList.add('hidden');
+        document.getElementById('gifts').classList.remove('hidden');
+    }
+</script>
+
+</body>
+</html>
