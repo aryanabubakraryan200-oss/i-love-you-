@@ -34,9 +34,9 @@
         }
 
         h1 { font-size: 1.8rem; color: #ff9a9e; text-shadow: 0 0 15px rgba(255, 154, 158, 0.5); margin-bottom: 15px; }
-        p { font-size: 1.1rem; line-height: 1.6; }
-
-        .btn-group { margin-top: 25px; display: flex; justify-content: center; gap: 15px; position: relative; }
+        
+        /* مەودای زیاتر لە نێوان دوگمەکاندا */
+        .btn-group { margin-top: 30px; display: flex; justify-content: center; gap: 40px; position: relative; }
         
         button {
             padding: 12px 30px;
@@ -52,7 +52,6 @@
         .yes { background: linear-gradient(135deg, #ff3366, #ff7eb3); color: white; box-shadow: 0 5px 15px rgba(255, 51, 102, 0.4); }
         .no { background: white; color: #302b63; position: absolute; }
 
-        /* بەشی دوای پەنجەنان بە بەڵێ */
         #main-menu { display: none; margin-top: 15px; }
         .menu-btn {
             display: block;
@@ -63,124 +62,73 @@
             border: 1px solid rgba(255, 255, 255, 0.3);
             color: white;
             border-radius: 15px;
-            font-size: 1.1px;
+            font-size: 1.1rem;
             cursor: pointer;
-            transition: 0.3s;
         }
-        .menu-btn:hover { background: rgba(255, 51, 102, 0.4); border-color: #ff3366; }
 
-        /* پەنجەرە بچووکەکان (Modals) */
-        .content-box { display: none; margin-top: 15px; text-align: right; background: rgba(0,0,0,0.3); padding: 20px; border-radius: 20px; max-height: 250px; overflow-y: auto; font-size: 0.95rem; }
-        .back-btn { background: #555; color: white; padding: 5px 15px; border-radius: 10px; margin-top: 10px; cursor: pointer; border: none; }
+        .content-box { display: none; margin-top: 15px; text-align: right; background: rgba(0,0,0,0.3); padding: 20px; border-radius: 20px; max-height: 350px; overflow-y: auto; }
+        .back-btn { background: #555; color: white; padding: 5px 15px; border-radius: 10px; margin-top: 10px; cursor: pointer; border: none; width: 100%; }
 
-        img.memory-img { width: 100%; border-radius: 15px; margin-top: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
-
-        /* یاری ئاگرینی و بارانی دڵ */
-        .firework { position: absolute; border-radius: 50%; z-index: 1; pointer-events: none; }
-        .heart-rain { position: absolute; color: #ff3366; font-size: 1.4rem; top: -50px; z-index: 2; pointer-events: none; animation: fall linear infinite; }
-        @keyframes fall { to { transform: translateY(100vh); } }
+        img.memory-img { width: 100%; border-radius: 15px; margin-top: 10px; display: block; }
     </style>
 </head>
 <body>
 
 <div class="card" id="card">
-    <!-- سەرەتا -->
     <div id="question-box">
         <h1>لە ئاریانەوە بۆ نازە خاتوون ✨</h1>
-        <p>ئایا دڵت دەدەی بە من و خۆشت دەوێم؟</p>
+        <p>ئایا خۆشت دەوێم؟</p>
         <div class="btn-group">
-            <button class="yes" onclick="celebrate()">بەڵێ، زۆر!</button>
+            <button class="yes" onclick="showMenu()">بەڵێ، زۆر!</button>
             <button class="no" id="noBtn" onmouseover="moveNo()" ontouchstart="moveNo()">نەخێر</button>
         </div>
     </div>
 
-    <!-- مۆنیووی سەرەکی دوای بەڵێ -->
     <div id="main-menu">
         <h1 style="font-size: 1.5rem;">هەمیشە لە دڵمدای نازە گیانم! ❤️</h1>
-        <p style="font-size: 0.95rem; margin-bottom: 15px;">یەکێک لەم هەڵبژاردنانە بکەرەوە:</p>
-        
         <button class="menu-btn" onclick="showSection('letter-section')">💌 نامەیەکی پڕ خۆشەویستی</button>
         <button class="menu-btn" onclick="showSection('song-section')">🎵 گۆرانییەک بۆ تۆ</button>
         <button class="menu-btn" onclick="showSection('memory-section')">🖼️ یادگارییەکی جوان</button>
     </div>
 
-    <!-- بەشی نامە -->
     <div id="letter-section" class="content-box">
         <p><strong>نازێ گیان، ✨</strong><br><br>
-        هەندێک جار لە خۆم دەپرسم چۆن بوو کە کەسێکی وەکو تو هاتە ناو ژیانمەوە و بە یەک پێکەنین، هەموو ڕۆژەکانی منی کردە رۆژێکی تایبەت? 🌹<br><br>
-        ڕەنگە هێشتا هەموو وشەکانم نەگوتبێت، بەڵام دەمویست بزانیت کە بوونی تو لە نزیک منەوە، چەندە هەستی ئارامی و جوانی پێبەخش؛ووم. کاتێک قسە دەکەین یان بیر لە تۆ دەکەمەوە، هەموو شتێک لە دەوروبەرم جوانتر دیار دەبێت. 💭💫<br><br>
+        هەندێک جار لە خۆم دەپرسم چۆن بوو کە کەسێکی وەکو تو هاتە ناو ژیانمەوە ، هەموو ڕۆژەکانی منی کردە رۆژێکی تایبەت? 🌹<br><br>
+        ڕەنگە هێشتا هەموو وشەکانم نەگوتبێت، بەڵام دەمویست بزانیت کە بوونی تو لە نزیک منەوە، چەندە هەستی ئارامی و جوانیت پێبەخشیووم. کاتێک قسە دەکەین یان بیر لە تۆ دەکەمەوە، هەموو شتێک لە دەوروبەرم جوانتر دیار دەبێت. 💭💫<br><br>
         تەنها دەمویست ئەم ڕستەیە پێ بڵێم: بوونی تو لە ژیانمدا گەورەترین و شیرینترین ڕووداوە، و زۆر سوپاس کە هەی. 🤍☕</p>
         <button class="back-btn" onclick="goBack()">گەڕانەوە</button>
     </div>
 
-    <!-- بەشی گۆرانی -->
+    <!-- گۆرانی یەکەم -->
     <div id="song-section" class="content-box" style="text-align: center;">
-        <p>گوێ لەم گۆرانییە بگرە، کە تەرخانە بۆ تو: ❤️</p>
-        <!-- گۆرانیی یوتیوب بە خودکار -->
-        <iframe width="100%" height="160" src="https://www.youtube.com/embed/q4sQwB4UnIc?autoplay=1" title="Love Song" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius: 12px; margin-top: 10px;"></iframe>
+        <iframe width="100%" height="200" src="https://www.youtube.com/embed/rbIoRnqcfwU?autoplay=1" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture" allowfullscreen></iframe>
         <button class="back-btn" onclick="goBack()">گەڕانەوە</button>
     </div>
 
-    <!-- بەشی یادگاری -->
+    <!-- گۆرانی دووەم بۆ یادگاری لەگەڵ وێنە -->
     <div id="memory-section" class="content-box" style="text-align: center;">
-        <p>جوانترین یادگاری و ساتەکانمان: ✨</p>
-        <!-- لێرەدا ناوی وێنەکەت دابنە، ناوی وێنەکەی تۆ 1000105789.jpgـە -->
         <img src="1000105789.jpg" alt="Memory" class="memory-img">
+        <iframe width="100%" height="200" src="https://www.youtube.com/embed/q4sQwB4UnIc?autoplay=1" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture" allowfullscreen style="margin-top:15px;"></iframe>
         <button class="back-btn" onclick="goBack()">گەڕانەوە</button>
     </div>
 </div>
 
 <script>
-    // جووڵەی دوگمەی نەخێر
     function moveNo() {
         const btn = document.getElementById('noBtn');
-        const cardRect = document.getElementById('card').getBoundingClientRect();
-        
-        const maxX = window.innerWidth - btn.offsetWidth - 50;
-        const maxY = window.innerHeight - btn.offsetHeight - 50;
-        
-        const randomX = Math.random() * (maxX - 50);
-        const randomY = Math.random() * (maxY - 50);
-        
         btn.style.position = "fixed";
-        btn.style.left = randomX + "px";
-        btn.style.top = randomY + "px";
+        btn.style.left = Math.random() * (window.innerWidth - 100) + "px";
+        btn.style.top = Math.random() * (window.innerHeight - 50) + "px";
     }
 
-    // کاتێک بەڵێ دەکرێت
-    function celebrate() {
+    function showMenu() {
         document.getElementById('question-box').style.display = 'none';
         document.getElementById('main-menu').style.display = 'block';
-        
-        // یاری ئاگرینی
-        for(let i=0; i<35; i++) {
-            let f = document.createElement('div');
-            f.className = 'firework';
-            f.style.left = Math.random() * 100 + 'vw';
-            f.style.top = Math.random() * 100 + 'vh';
-            f.style.width = f.style.height = '8px';
-            f.style.background = `hsl(${Math.random() * 360}, 100%, 70%)`;
-            document.body.appendChild(f);
-            f.animate([{transform: 'scale(0)', opacity: 1}, {transform: 'scale(7)', opacity: 0}], {duration: 1800});
-        }
-
-        // بارانی دڵ
-        setInterval(() => {
-            let h = document.createElement('div');
-            h.innerHTML = "❤️";
-            h.className = 'heart-rain';
-            h.style.left = Math.random() * 100 + "vw";
-            h.style.animationDuration = (Math.random() * 3 + 2) + "s";
-            document.body.appendChild(h);
-            setTimeout(() => h.remove(), 5000);
-        }, 300);
     }
 
-    // گۆڕینی بەشەکان
-    function showSection(sectionId) {
+    function showSection(id) {
         document.getElementById('main-menu').style.display = 'none';
-        document.querySelectorAll('.content-box').forEach(box => box.style.display = 'none');
-        document.getElementById(sectionId).style.display = 'block';
+        document.getElementById(id).style.display = 'block';
     }
 
     function goBack() {
