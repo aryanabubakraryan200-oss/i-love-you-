@@ -95,6 +95,10 @@
         هەندێک جار لە خۆم دەپرسم چۆن بوو کە کەسێکی وەکو تو هاتە ناو ژیانمەوە و بە یەک پێکەنین، هەموو ڕۆژەکانی منی کردە رۆژێکی تایبەت? 🌹<br><br>
         ڕەنگە هێشتا هەموو وشەکانم نەگوتبێت، بەڵام دەمویست بزانیت کە بوونی تو لە نزیک منەوە، چەندە هەستی ئارامی و جوانی پێبەخشیووم. کاتێک قسە دەکەین یان بیر لە تۆ دەکەمەوە، هەموو شتێک لە دەوروبەرم جوانتر دیار دەبێت. 💭💫<br><br>
         تەنها دەمویست ئەم ڕستەیە پێ بڵێم: بوونی تو لە ژیانمدا گەورەترین و شیرینترین ڕووداوە، و زۆر سوپاس کە هەی. 🤍☕</p>
+        
+        <!-- شانۆی مەخفەی گۆرانییەی نامەکە -->
+        <div id="letter-player-container" style="display:none;"></div>
+        
         <button class="back-btn" onclick="goBack()">گەڕانەوە</button>
     </div>
 
@@ -104,7 +108,6 @@
     </div>
 
     <div id="memory-section" class="content-box" style="text-align: center;">
-        <!-- لینکی ڕاستەقینەی وێنەکە لە درایڤەوە -->
         <img src="https://lh3.googleusercontent.com/d/1eKlnFrVgxvlhax5HpDZLr76OQV3jAlKm" alt="Memory" class="memory-img">
         <div id="memory-player-container" style="display:none;"></div>
         <button class="back-btn" onclick="goBack()">گەڕانەوە</button>
@@ -128,20 +131,28 @@
         document.getElementById('main-menu').style.display = 'none';
         document.querySelectorAll('.content-box').forEach(box => box.style.display = 'none');
         
-        if(id === 'song-section') {
+        // پاککردنەوەی هەموو پلەیەرەکان سەرەتا
+        document.getElementById('song-player-container').innerHTML = '';
+        document.getElementById('memory-player-container').innerHTML = '';
+        document.getElementById('letter-player-container').innerHTML = '';
+
+        if(id === 'letter-section') {
+            // گۆرانی تایبەتی نامە (بە بێدەنگی و خۆکار دەست پێدەکات)
+            document.getElementById('letter-player-container').innerHTML = '<iframe width="0" height="0" src="https://www.youtube.com/embed/QKEOmHkAxnw?autoplay=1" frameborder="0" allow="autoplay"></iframe>';
+        } else if(id === 'song-section') {
             document.getElementById('song-player-container').innerHTML = '<iframe width="100%" height="160" src="https://www.youtube.com/embed/rbIoRnqcfwU?autoplay=1" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
-            document.getElementById('memory-player-container').innerHTML = '';
         } else if(id === 'memory-section') {
             document.getElementById('memory-player-container').innerHTML = '<iframe width="0" height="0" src="https://www.youtube.com/embed/q4sQwB4UnIc?autoplay=1" frameborder="0" allow="autoplay"></iframe>';
-            document.getElementById('song-player-container').innerHTML = '';
         }
 
         document.getElementById(id).style.display = 'block';
     }
 
     function goBack() {
+        // وەستاندنی دەنگەکان کاتێک دەگەڕێتەوە دواوە
         document.getElementById('song-player-container').innerHTML = '';
         document.getElementById('memory-player-container').innerHTML = '';
+        document.getElementById('letter-player-container').innerHTML = '';
         
         document.querySelectorAll('.content-box').forEach(box => box.style.display = 'none');
         document.getElementById('main-menu').style.display = 'block';
