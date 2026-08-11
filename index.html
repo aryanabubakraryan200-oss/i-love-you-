@@ -24,7 +24,7 @@
             background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 30px;
+            padding: 25px;
             border-radius: 40px;
             text-align: center;
             width: 90%;
@@ -33,12 +33,12 @@
             z-index: 10;
         }
 
-        h1 { font-size: 1.8rem; color: #ff9a9e; text-shadow: 0 0 15px rgba(255, 154, 158, 0.5); margin-bottom: 15px; }
+        h1 { font-size: 1.6rem; color: #ff9a9e; text-shadow: 0 0 15px rgba(255, 154, 158, 0.5); margin-bottom: 15px; }
         
-        .btn-group { margin-top: 30px; display: flex; justify-content: center; gap: 40px; position: relative; }
+        .btn-group { margin-top: 25px; display: flex; justify-content: center; gap: 30px; position: relative; min-height: 50px; }
         
         button {
-            padding: 12px 30px;
+            padding: 12px 25px;
             border: none;
             border-radius: 50px;
             font-size: 1rem;
@@ -48,8 +48,8 @@
             font-family: 'Vazirmatn', sans-serif;
         }
 
-        .yes { background: linear-gradient(135deg, #ff3366, #ff7eb3); color: white; box-shadow: 0 5px 15px rgba(255, 51, 102, 0.4); order: 1; }
-        .no { background: white; color: #302b63; position: absolute; left: 0; order: 2; }
+        .yes { background: linear-gradient(135deg, #ff3366, #ff7eb3); color: white; box-shadow: 0 5px 15px rgba(255, 51, 102, 0.4); }
+        .no { background: white; color: #302b63; }
 
         #main-menu { display: none; margin-top: 15px; }
         .menu-btn {
@@ -68,8 +68,24 @@
         .content-box { display: none; margin-top: 15px; text-align: right; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 20px; }
         .back-btn { background: #555; color: white; padding: 8px 15px; border-radius: 10px; margin-top: 10px; cursor: pointer; border: none; width: 100%; }
 
-        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 15px; margin-top: 5px; }
-        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        /* قەبارەی ڕێک و جوانی ڤیدیۆکان بێ ئەوەی لایەکریان ببڕدرێت */
+        .video-box {
+            width: 100%;
+            max-height: 260px;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-top: 10px;
+            background: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .video-box video {
+            width: 100%;
+            max-height: 260px;
+            object-fit: contain;
+            border-radius: 15px;
+        }
     </style>
 </head>
 <body>
@@ -78,9 +94,9 @@
     <div id="question-box">
         <h1>هەستە چاو جوان درەنگه 👀❤️</h1>
         <p>ئەتوانی هەڵبستی؟؟</p>
-        <div class="btn-group">
+        <div class="btn-group" id="btnGroup">
             <button class="yes" onclick="showMenu()">بەڵێ، هەڵسام!</button>
-            <button class="no" id="noBtn" onclick="moveNo()" onmouseover="moveNo()" ontouchstart="moveNo()">نەخێر</button>
+            <button class="no" id="noBtn" onclick="handleNo()">نەخێر</button>
         </div>
     </div>
 
@@ -91,7 +107,7 @@
         <button class="menu-btn" onclick="showSection('memory-section')">🎥 ڤیدۆیەکی جوان</button>
     </div>
 
-    <!-- نامەی بەیانی باش لەگەڵ موزیکی پشتەوە -->
+    <!-- نامەی بەیانی باش لەگەڵ موزیک -->
     <div id="letter-section" class="content-box">
         <p style="line-height: 1.8;"><strong>بەیانیت باش گیانەکەم، هەموو ژیانم! ☀️✨</strong><br><br>
         تەنها دەمویست بڵێم کە بەیانیان بە بیرکردنەوە لە تۆ دەست پێدەکەم و ئەوە دڵخۆشترین ساتەکانی ڕۆژمە. 💭💖 بوونی تۆ لە ژیانمدا هەستێکی وای پێ بەخشیوم کە وشەکان ناتوانن وەسفی بکەن. 🌸 هیوادارم ئەمڕۆت پڕ بێت لە جوانی و پێکەنین، وەک ئەو جوانییەی کە تۆ بە ڕۆژەکانی منی دەبەخشیت. 💗 ڕۆژێکی پڕ لە سەرکەوتنت بۆ دەخوازم! 🌟🌹</p>
@@ -100,7 +116,7 @@
         <button class="back-btn" onclick="goBack()">گەڕانەوە</button>
     </div>
 
-    <!-- گۆرانی بەیانی باش (Shorts) -->
+    <!-- گۆرانی بەیانی باش -->
     <div id="song-section" class="content-box" style="text-align: center;">
         <div id="song-player-container"></div>
         <button class="back-btn" onclick="goBack()">گەڕانەوە</button>
@@ -108,8 +124,7 @@
 
     <!-- ڤیدیۆی جوانی درایڤ -->
     <div id="memory-section" class="content-box" style="text-align: center;">
-        <div class="video-container" id="video-wrapper"></div>
-        <div id="memory-player-container" style="display:none;"></div>
+        <div class="video-box" id="video-wrapper"></div>
         <button class="back-btn" onclick="goBack()">گەڕانەوە</button>
     </div>
 </div>
@@ -117,39 +132,35 @@
 <script>
     let noClickCount = 0;
 
-    function moveNo() {
-        const btn = document.getElementById('noBtn');
+    function handleNo() {
         noClickCount++;
+        const noBtn = document.getElementById('noBtn');
+        const box = document.getElementById('question-box');
 
         if (noClickCount === 1) {
-            // جاری یەکەم کە دەستی نایە نەخێر
-            let videoUrl = "https://drive.google.com/file/d/19RGZfzMB3YPBx9a0Z0EnHf-NqNfcWUbj/view";
-            showPopupVideo(videoUrl);
+            // جاری یەکەم: ڤیدیۆی یەکەم
+            let directUrl1 = "https://docs.google.com/uc?export=download&id=19RGZfzMB3YPBx9a0Z0EnHf-NqNfcWUbj";
+            box.innerHTML = `
+                <h1 style="font-size: 1.3rem; color: #ff3366;">بەزورە دەبێت هەڵبستی! 🤣👇</h1>
+                <div class="video-box">
+                    <video src="${directUrl1}" autoplay controls playsinline></video>
+                </div>
+                <button class="menu-btn" style="margin-top: 15px;" onclick="location.reload()">تەواو هەڵسام! 😂❤️</button>
+            `;
         } else if (noClickCount === 2) {
-            // جاری دووەم کە دەستی نایە نەخێر
-            let videoUrl = "https://drive.google.com/file/d/16YrkKxciPrIPxjSA6OQkZCXfY21f_Sts/view";
-            showPopupVideo(videoUrl);
-            // دوگمەکە دەشارینەوە دوای دوو جار
-            btn.style.display = 'none';
+            // جاری دووەم: ڤیدیۆی دووەم (جیاواز)
+            let directUrl2 = "https://docs.google.com/uc?export=download&id=16YrkKxciPrIPxjSA6OQkZCXfY21f_Sts";
+            box.innerHTML = `
+                <h1 style="font-size: 1.3rem; color: #ff3366;">هەر دەبێت هەڵبستی تەواو! 🤭👇</h1>
+                <div class="video-box">
+                    <video src="${directUrl2}" autoplay controls playsinline></video>
+                </div>
+                <button class="menu-btn" style="margin-top: 15px;" onclick="location.reload()">باشە ئینجا هەڵسام! 😂❤️</button>
+            `;
         } else {
-            // بۆ ئەوەی ڕەفتاری ڕاکردنیشی هەبێت
-            btn.style.position = "fixed";
-            btn.style.left = Math.random() * (window.innerWidth - 100) + "px";
-            btn.style.top = Math.random() * (window.innerHeight - 50) + "px";
+            // جاری سێیەم: ونبوونی دوگمەی نەخێر بە تەواوی
+            noBtn.style.display = 'none';
         }
-    }
-
-    function showPopupVideo(url) {
-        // گۆڕینی لینکەکە بۆ شوێنی پیشاندانی ڕاستەقینەی ڤیدیۆی درایڤ
-        let embedUrl = url.replace('/view', '/preview');
-        let box = document.getElementById('question-box');
-        box.innerHTML = `
-            <h1 style="font-size: 1.3rem; color: #ff3366;">بەزورە دەبێت هەڵبستی! 🤣👇</h1>
-            <div class="video-container" style="margin-top:10px;">
-                <iframe src="${embedUrl}" frameborder="0" allow="autoplay" allowfullscreen></iframe>
-            </div>
-            <button class="menu-btn" style="margin-top: 15px;" onclick="location.reload()">تەواو هەڵسام! 😂❤️</button>
-        `;
     }
 
     function showMenu() {
@@ -162,20 +173,16 @@
         document.querySelectorAll('.content-box').forEach(box => box.style.display = 'none');
         
         document.getElementById('song-player-container').innerHTML = '';
-        document.getElementById('memory-player-container').innerHTML = '';
         document.getElementById('letter-player-container').innerHTML = '';
         document.getElementById('video-wrapper').innerHTML = '';
 
         if(id === 'letter-section') {
-            // موزیکی نامەی بەیانی باش
             document.getElementById('letter-player-container').innerHTML = '<iframe width="0" height="0" src="https://www.youtube.com/embed/p9hejiUiDN0?autoplay=1" frameborder="0" allow="autoplay"></iframe>';
         } else if(id === 'song-section') {
-            // گۆرانی بەیانی باش (Shorts)
-            document.getElementById('song-player-container').innerHTML = '<iframe width="100%" height="315" src="https://www.youtube.com/embed/uszR67KlkNg?autoplay=1" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
+            document.getElementById('song-player-container').innerHTML = '<iframe width="100%" height="250" src="https://www.youtube.com/embed/uszR67KlkNg?autoplay=1" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
         } else if(id === 'memory-section') {
-            // ڤیدیۆی درایڤی جوان
-            let driveEmbed = "https://drive.google.com/file/d/1tfOYxgV8RgniMl0AkLI5zylolccT2o5n/preview";
-            document.getElementById('video-wrapper').innerHTML = `<iframe src="${driveEmbed}" frameborder="0" allow="autoplay" allowfullscreen></iframe>`;
+            let directVideoUrl = "https://docs.google.com/uc?export=download&id=1tfOYxgV8RgniMl0AkLI5zylolccT2o5n";
+            document.getElementById('video-wrapper').innerHTML = `<video src="${directVideoUrl}" autoplay controls playsinline style="width:100%; max-height:260px; object-fit:contain;"></video>`;
         }
 
         document.getElementById(id).style.display = 'block';
@@ -183,7 +190,6 @@
 
     function goBack() {
         document.getElementById('song-player-container').innerHTML = '';
-        document.getElementById('memory-player-container').innerHTML = '';
         document.getElementById('letter-player-container').innerHTML = '';
         document.getElementById('video-wrapper').innerHTML = '';
         
