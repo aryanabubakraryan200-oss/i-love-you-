@@ -127,17 +127,16 @@
 
     function handleNo() {
         noClickCount++;
-        const noBtn = document.getElementById('noBtn');
         const box = document.getElementById('question-box');
 
         if (noClickCount === 1) {
             // جاری یەکەم: ڤیدیۆی یەکەمی یوتیوب Shorts
             box.innerHTML = `
-                <h1 style="font-size: 1.3rem; color: #ff3366;"> 😐هەستە! </h1>
+                <h1 style="font-size: 1.3rem; color: #ff3366;">بەزورە دەبێت هەڵبستی! 🤣👇</h1>
                 <div class="video-box">
                     <iframe width="100%" height="280" src="https://www.youtube.com/embed/8lwyqkUExvU?autoplay=1" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture" allowfullscreen></iframe>
                 </div>
-                <button class="menu-btn" style="margin-top: 15px;" onclick="location.reload()">تەواو هەڵسام! 😂❤️</button>
+                <button class="menu-btn" style="margin-top: 15px;" onclick="resetToQuestion()">تەواو هەڵسام! 😂❤️</button>
             `;
         } else if (noClickCount === 2) {
             // جاری دووەم: ڤیدیۆی دووەمی یوتیوب Shorts
@@ -146,12 +145,21 @@
                 <div class="video-box">
                     <iframe width="100%" height="280" src="https://www.youtube.com/embed/eEo5WcbL-WQ?autoplay=1" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture" allowfullscreen></iframe>
                 </div>
-                <button class="menu-btn" style="margin-top: 15px;" onclick="location.reload()">باشە ئینجا هەڵسام! 😂❤️</button>
+                <button class="menu-btn" style="margin-top: 15px;" onclick="resetToQuestion()">باشە ئینجا هەڵسام! 😂❤️</button>
             `;
-        } else if (noClickCount >= 3) {
-            // جاری سێیەم: ونبوونی دوگمەی نەخێر بە تەواوی
-            noBtn.style.display = 'none';
         }
+    }
+
+    function resetToQuestion() {
+        const box = document.getElementById('question-box');
+        box.innerHTML = `
+            <h1>هۆستە چاو جوان درەنگه 👀❤️</h1>
+            <p>ئەتوانی هەڵبستی؟؟</p>
+            <div class="btn-group" id="btnGroup">
+                <button class="yes" onclick="showMenu()">بەڵێ، هەڵسام!</button>
+                <button class="no" id="noBtn" onclick="handleNo()" style="${noClickCount >= 2 ? 'display: none;' : ''}">نەخێر</button>
+            </div>
+        `;
     }
 
     function showMenu() {
@@ -170,7 +178,6 @@
         if(id === 'letter-section') {
             document.getElementById('letter-player-container').innerHTML = '<iframe width="0" height="0" src="https://www.youtube.com/embed/p9hejiUiDN0?autoplay=1" frameborder="0" allow="autoplay"></iframe>';
         } else if(id === 'song-section') {
-            document.getElementById('song-section').querySelector('.video-box') || '';
             document.getElementById('song-player-container').innerHTML = '<iframe width="100%" height="280" src="https://www.youtube.com/embed/uszR67KlkNg?autoplay=1" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
         } else if(id === 'memory-section') {
             document.getElementById('video-wrapper').innerHTML = '<iframe width="100%" height="280" src="https://www.youtube.com/embed/TsGkvqz2RQc?autoplay=1" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
