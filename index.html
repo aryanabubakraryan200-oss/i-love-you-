@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بۆ نازە خاتوون ❤️</title>
+    <title>بەیانی باش بۆ نازە خاتوون ❤️</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap');
         
@@ -68,58 +68,88 @@
         .content-box { display: none; margin-top: 15px; text-align: right; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 20px; }
         .back-btn { background: #555; color: white; padding: 8px 15px; border-radius: 10px; margin-top: 10px; cursor: pointer; border: none; width: 100%; }
 
-        img.memory-img { width: 100%; max-height: 250px; object-fit: contain; border-radius: 15px; margin-top: 5px; display: block; }
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 15px; margin-top: 5px; }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
     </style>
 </head>
 <body>
 
 <div class="card" id="card">
     <div id="question-box">
-        <h1>لە ئاریانەوە بۆ نازە خاتوون ✨</h1>
-        <p>ئایا خۆشت دەوێم؟</p>
+        <h1>هەستە چاو جوان درەنگه 👀❤️</h1>
+        <p>ئەتوانی هەڵبستی؟؟</p>
         <div class="btn-group">
-            <button class="yes" onclick="showMenu()">بەڵێ، زۆر!</button>
-            <button class="no" id="noBtn" onmouseover="moveNo()" ontouchstart="moveNo()">نەخێر</button>
+            <button class="yes" onclick="showMenu()">بەڵێ، هەڵسام!</button>
+            <button class="no" id="noBtn" onclick="moveNo()" onmouseover="moveNo()" ontouchstart="moveNo()">نەخێر</button>
         </div>
     </div>
 
     <div id="main-menu">
-        <h1 style="font-size: 1.5rem;"> یەڵا چاو جوان دانە دانە بیان کەرەوە و سێریان بکە گوێ لە گۆرانییەکانیش بگرە تا ئاخێر جاوپان😍✨ ! ❤️</h1>
-        <button class="menu-btn" onclick="showSection('letter-section')">💌 نامەیەکی پڕ خۆشەویستی</button>
-        <button class="menu-btn" onclick="showSection('song-section')">🎵 گۆرانییەک بۆ تۆ</button>
-        <button class="menu-btn" onclick="showSection('memory-section')">🖼️ یادگارییەکی جوان</button>
+        <h1 style="font-size: 1.5rem;">بەیانیت باش گیانەکەم! ☀️</h1>
+        <button class="menu-btn" onclick="showSection('letter-section')">💌 نامەی بەیانی باش</button>
+        <button class="menu-btn" onclick="showSection('song-section')">🎵 گۆرانی بەیانی باش</button>
+        <button class="menu-btn" onclick="showSection('memory-section')">🎥 ڤیدۆیەکی جوان</button>
     </div>
 
+    <!-- نامەی بەیانی باش لەگەڵ موزیکی پشتەوە -->
     <div id="letter-section" class="content-box">
-        <p><strong>نازێ گیان، ✨</strong><br><br>
-        هەندێک جار لە خۆم دەپرسم چۆن بوو کە کەسێکی وەکو تو هاتە ناو ژیانمەوە و بە یەک پێکەنین، هەموو ڕۆژەکانی منی کردە رۆژێکی تایبەت? 🌹<br><br>
-        ڕەنگە هێشتا هەموو وشەکانم نەگوتبێت، بەڵام دەمویست بزانیت کە بوونی تو لە نزیک منەوە، چەندە هەستی ئارامی و جوانی پێبەخشیووم. کاتێک قسە دەکەین یان بیر لە تۆ دەکەمەوە، هەموو شتێک لە دەوروبەرم جوانتر دیار دەبێت. 💭💫<br><br>
-        تەنها دەمویست ئەم ڕستەیە پێ بڵێم: بوونی تو لە ژیانمدا گەورەترین و شیرینترین ڕووداوە، و زۆر سوپاس کە هەی. 🤍☕</p>
+        <p style="line-height: 1.8;"><strong>بەیانیت باش گیانەکەم، هەموو ژیانم! ☀️✨</strong><br><br>
+        تەنها دەمویست بڵێم کە بەیانیان بە بیرکردنەوە لە تۆ دەست پێدەکەم و ئەوە دڵخۆشترین ساتەکانی ڕۆژمە. 💭💖 بوونی تۆ لە ژیانمدا هەستێکی وای پێ بەخشیوم کە وشەکان ناتوانن وەسفی بکەن. 🌸 هیوادارم ئەمڕۆت پڕ بێت لە جوانی و پێکەنین، وەک ئەو جوانییەی کە تۆ بە ڕۆژەکانی منی دەبەخشیت. 💗 ڕۆژێکی پڕ لە سەرکەوتنت بۆ دەخوازم! 🌟🌹</p>
         
-        <!-- شانۆی مەخفەی گۆرانییەی نامەکە -->
         <div id="letter-player-container" style="display:none;"></div>
-        
         <button class="back-btn" onclick="goBack()">گەڕانەوە</button>
     </div>
 
+    <!-- گۆرانی بەیانی باش (Shorts) -->
     <div id="song-section" class="content-box" style="text-align: center;">
         <div id="song-player-container"></div>
         <button class="back-btn" onclick="goBack()">گەڕانەوە</button>
     </div>
 
+    <!-- ڤیدیۆی جوانی درایڤ -->
     <div id="memory-section" class="content-box" style="text-align: center;">
-        <img src="https://lh3.googleusercontent.com/d/1eKlnFrVgxvlhax5HpDZLr76OQV3jAlKm" alt="Memory" class="memory-img">
+        <div class="video-container" id="video-wrapper"></div>
         <div id="memory-player-container" style="display:none;"></div>
         <button class="back-btn" onclick="goBack()">گەڕانەوە</button>
     </div>
 </div>
 
 <script>
+    let noClickCount = 0;
+
     function moveNo() {
         const btn = document.getElementById('noBtn');
-        btn.style.position = "fixed";
-        btn.style.left = Math.random() * (window.innerWidth - 100) + "px";
-        btn.style.top = Math.random() * (window.innerHeight - 50) + "px";
+        noClickCount++;
+
+        if (noClickCount === 1) {
+            // جاری یەکەم کە دەستی نایە نەخێر
+            let videoUrl = "https://drive.google.com/file/d/19RGZfzMB3YPBx9a0Z0EnHf-NqNfcWUbj/view";
+            showPopupVideo(videoUrl);
+        } else if (noClickCount === 2) {
+            // جاری دووەم کە دەستی نایە نەخێر
+            let videoUrl = "https://drive.google.com/file/d/16YrkKxciPrIPxjSA6OQkZCXfY21f_Sts/view";
+            showPopupVideo(videoUrl);
+            // دوگمەکە دەشارینەوە دوای دوو جار
+            btn.style.display = 'none';
+        } else {
+            // بۆ ئەوەی ڕەفتاری ڕاکردنیشی هەبێت
+            btn.style.position = "fixed";
+            btn.style.left = Math.random() * (window.innerWidth - 100) + "px";
+            btn.style.top = Math.random() * (window.innerHeight - 50) + "px";
+        }
+    }
+
+    function showPopupVideo(url) {
+        // گۆڕینی لینکەکە بۆ شوێنی پیشاندانی ڕاستەقینەی ڤیدیۆی درایڤ
+        let embedUrl = url.replace('/view', '/preview');
+        let box = document.getElementById('question-box');
+        box.innerHTML = `
+            <h1 style="font-size: 1.3rem; color: #ff3366;">بەزورە دەبێت هەڵبستی! 🤣👇</h1>
+            <div class="video-container" style="margin-top:10px;">
+                <iframe src="${embedUrl}" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+            </div>
+            <button class="menu-btn" style="margin-top: 15px;" onclick="location.reload()">تەواو هەڵسام! 😂❤️</button>
+        `;
     }
 
     function showMenu() {
@@ -131,28 +161,31 @@
         document.getElementById('main-menu').style.display = 'none';
         document.querySelectorAll('.content-box').forEach(box => box.style.display = 'none');
         
-        // پاککردنەوەی هەموو پلەیەرەکان سەرەتا
         document.getElementById('song-player-container').innerHTML = '';
         document.getElementById('memory-player-container').innerHTML = '';
         document.getElementById('letter-player-container').innerHTML = '';
+        document.getElementById('video-wrapper').innerHTML = '';
 
         if(id === 'letter-section') {
-            // گۆرانی تایبەتی نامە (بە بێدەنگی و خۆکار دەست پێدەکات)
-            document.getElementById('letter-player-container').innerHTML = '<iframe width="0" height="0" src="https://www.youtube.com/embed/QKEOmHkAxnw?autoplay=1" frameborder="0" allow="autoplay"></iframe>';
+            // موزیکی نامەی بەیانی باش
+            document.getElementById('letter-player-container').innerHTML = '<iframe width="0" height="0" src="https://www.youtube.com/embed/p9hejiUiDN0?autoplay=1" frameborder="0" allow="autoplay"></iframe>';
         } else if(id === 'song-section') {
-            document.getElementById('song-player-container').innerHTML = '<iframe width="100%" height="160" src="https://www.youtube.com/embed/rbIoRnqcfwU?autoplay=1" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
+            // گۆرانی بەیانی باش (Shorts)
+            document.getElementById('song-player-container').innerHTML = '<iframe width="100%" height="315" src="https://www.youtube.com/embed/uszR67KlkNg?autoplay=1" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
         } else if(id === 'memory-section') {
-            document.getElementById('memory-player-container').innerHTML = '<iframe width="0" height="0" src="https://www.youtube.com/embed/q4sQwB4UnIc?autoplay=1" frameborder="0" allow="autoplay"></iframe>';
+            // ڤیدیۆی درایڤی جوان
+            let driveEmbed = "https://drive.google.com/file/d/1tfOYxgV8RgniMl0AkLI5zylolccT2o5n/preview";
+            document.getElementById('video-wrapper').innerHTML = `<iframe src="${driveEmbed}" frameborder="0" allow="autoplay" allowfullscreen></iframe>`;
         }
 
         document.getElementById(id).style.display = 'block';
     }
 
     function goBack() {
-        // وەستاندنی دەنگەکان کاتێک دەگەڕێتەوە دواوە
         document.getElementById('song-player-container').innerHTML = '';
         document.getElementById('memory-player-container').innerHTML = '';
         document.getElementById('letter-player-container').innerHTML = '';
+        document.getElementById('video-wrapper').innerHTML = '';
         
         document.querySelectorAll('.content-box').forEach(box => box.style.display = 'none');
         document.getElementById('main-menu').style.display = 'block';
